@@ -28,3 +28,35 @@ Homestead.json
 .env.production
 .phpactor.json
 auth.json
+.vscode
+
+# IDEs and Editors
+/.idea/
+/*.suo
+/*.ntvs*
+/*.njsproj
+/*.sln
+/*.sw?
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs and Caches
+/storage/logs/*
+!/storage/logs/.gitignore
+/storage/framework/sessions/*
+!/storage/framework/sessions/.gitignore
+/storage/framework/views/*
+!/storage/framework/views/.gitignore
+/storage/framework/cache/data/*
+!/storage/framework/cache/data/.gitignore
+/bootstrap/cache/*
+!/bootstrap/cache/.gitignore
+
+
