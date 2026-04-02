@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `lessons` (
 
 -- 4. ENROLLMENTS TABLE: This is the "Join Table" (Many-to-Many).
 -- Since one student can take many lessons, and one lesson has many students.
-CREATE TABLE IF NOT EXISTS `enrollments` (
+CREATE TABLE IF NOT EXISTS `lesson_registrations` (
     `student_id`        INT UNSIGNED NOT NULL,                      -- student_id: Links to a specific student profile.
     `lesson_id`         INT UNSIGNED NOT NULL,                      -- lesson_id: Links to a specific surf session.
     `payment_status`    ENUM('Pending', 'Paid') DEFAULT 'Pending',  -- Payment Status: (checking if the student has paid).

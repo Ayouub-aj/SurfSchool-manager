@@ -16,6 +16,10 @@ touch app/controllers/AdminController.php   # Handles the Dashboard & Planning.
 touch app/controllers/StudentController.php # Handles Profiles & Agendas.
 touch app/controllers/LessonController.php  # Handles Creating Sessions.
 
+#Middleware Folder 
+touch app/middleware/AuthMiddleware.php # Middleware acts as a gatekeeper between the user's request and your controller. 
+                                        # It checks permissions (and credentials)before executing the controller method.
+
 # CORE: The "Equipment"
 # The base tools that make the whole MVC system work.
 touch app/core/App.php        # The Router: The "Host" who directs traffic.
@@ -32,11 +36,12 @@ touch app/models/Lesson.php  # Data logic for surf sessions.
 # These are just HTML/CSS files. They "show" the food but don't cook it (Zero SQL).
 touch app/views/admin/dashboard.php      # The Admin's main screen.
 touch app/views/admin/manage-lessons.php # The screen to create sessions.
-touch app/views/student/register.php     # The sign-up form.
 touch app/views/student/my-agenda.php    # The student's personal schedule.
+touch app/views/auth/registration.php    # The registration page.
 touch app/views/auth/login.php           # The login page.
-touch app/views/shared/footer.php        # Reusable bottom part of the site.
+touch app/views/auth/logout.php          # The logout page.
 touch app/views/shared/header.php        # Reusable top part of the site.
+touch app/views/shared/footer.php        # Reusable bottom part of the site.
 
 # --- 3. THE STAFF MANUAL & STORAGE (Data & Config) ---
 touch config/db.php           # Secret codes to connect to the Database.
