@@ -1,324 +1,224 @@
-# SurfSchool Manager - Task Board
+# 🏄 TAGHAZOUT SURF EXPO — Task Board
 
-**Project:** Taghazout Surf Expo - Surf School Management System  
-**Scrum Master:** Backend Developer  
-**Sprint:** 5 Days (March 30 - April 3, 2026)  
-**Team:** Individual
-
----
-
-## Sprint Overview
-
-| Sprint | Duration | Goal |
-|--------|----------|------|
-| Sprint 1 | Day 1 | Database design & MVC structure |
-| Sprint 2 | Day 2 | Core Models & Authentication |
-| Sprint 3 | Day 3 | Manager Dashboard & Lessons |
-| Sprint 4 | Day 4 | Student Portal & Enrollments |
-| Sprint 5 | Day 5 | Polish, Testing & Documentation |
+**Project:** Surf School Management System  
+**Agency:** PixelCraft Agency  
+**Client:** Taghazout Surf Expo
 
 ---
 
-## Product Backlog
+## 📅 Suggested Day-by-Day Plan (5 Days)
 
-### User Stories
-
-| ID | Summary | Story Points | Priority |
-|----|---------|--------------|----------|
-| US1 | Manager login & dashboard | 3 | P0 - Critical |
-| US2 | Create surf sessions & register students | 5 | P0 - Critical |
-| US3 | Modify student levels | 2 | P0 - Critical |
-| US4 | Student self-registration | 3 | P0 - Critical |
-| US5 | Student calendar & payment status | 3 | P0 - Critical |
-| BF1 | MVC Router (index.php) | 2 | P1 - High |
-| BF2 | Average occupancy stats | 1 | P2 - Medium |
+| Day | Focus | Status |
+| :--- | :--- | :---: |
+| **Day 1 (Mar 30)** | Epic 1 + 2 — Project Setup, MVC Structure, DB Schema | [ ] |
+| **Day 2 (Mar 31)** | Epic 3 + 4 — OOP Classes, PDO Connection, Auth System (US1) | [ ] |
+| **Day 3 (Apr 01)** | Epic 5 + 6 — Manager Dashboard (US2, US3) + Surfer Registration (US4) | [ ] |
+| **Day 4 (Apr 02)** | Epic 7 + 8 — Surfer Calendar (US5) + Bonus Features (Router, Stats) | [ ] |
+| **Day 5 (Apr 03)** | Epic 9 + 10 — Testing Phase, Bug Fixes, Documentation, Final Push | [ ] |
 
 ---
 
-## Sprint 1: Database & Structure (Day 1)
+## 🟣 EPIC 1 — Project Setup & MVC Structure
 
-### Tasks
-
-#### To Do
-| ID | Task | Assignee | Story |
-|----|------|----------|-------|
-| T1.1 | Create database schema (4 tables) | Dev | US1-5 |
-| T1.2 | Create seed data for testing | Dev | US1-5 |
-| T1.3 | Set up MVC folder structure | Dev | BF1 |
-| T1.4 | Create base Controller class | Dev | BF1 |
-| T1.5 | Create base Model class | Dev | BF1 |
-| T1.6 | Configure database connection | Dev | US1-5 |
-
-#### Done
-| ID | Task | Assignee | Story |
-|----|------|----------|-------|
-| T1.1 | Create database schema (4 tables) | Dev | US1-5 |
-| T1.2 | Create seed data for testing | Dev | US1-5 |
-| T1.3 | Set up MVC folder structure | Dev | BF1 |
+| Done | Task Description | Priority | Est. |
+| :---: | :--- | :--- | :--- |
+| [ ] | Create MVC folder structure (`/controllers`, `/models`, `/views`, `/config`, `/public`, `/assets`) | 🔴 High | 20 min |
+| [ ] | Create `/views` subfolders (`/manager`, `/surfer`, `/auth`, `/partials`) | 🔴 High | 10 min |
+| [ ] | Set up single entry point `public/index.php` | 🔴 High | 15 min |
+| [ ] | Start XAMPP — enable Apache + MySQL services; verify via `localhost` | 🔴 High | 5 min |
+| [ ] | Open phpMyAdmin and create database `taghazout_surf_expo` with UTF-8 charset | 🔴 High | 10 min |
+| [ ] | Initialize local Git repo with `.gitignore` (ignore `/vendor`, `.env`, etc.) | 🔴 High | 10 min |
+| [ ] | Create GitHub remote repository and link to local | 🔴 High | 10 min |
+| [ ] | Create basic `README.md` with project title, description, tech stack placeholder | 🟡 Medium | 15 min |
+| [ ] | **Commit:** `"init: MVC project structure and environment setup"` | 🔴 High | 5 min |
 
 ---
 
-## Sprint 2: Core Models & Auth (Day 2)
+## 🟣 EPIC 2 — Database Design & Schema
 
-### Tasks
-
-#### To Do
-| ID | Task | Assignee | Story |
-|----|------|----------|-------|
-| T2.1 | Implement User model (CRUD) | Dev | US1, US4 |
-| T2.2 | Implement Student model (CRUD) | Dev | US1, US4 |
-| T2.3 | Implement Lesson model (CRUD) | Dev | US2 |
-| T2.4 | Create AuthController | Dev | US1 |
-| T2.5 | Implement login functionality | Dev | US1 |
-| T2.6 | Add password hashing (BCRYPT) | Dev | US1 |
-
-#### In Progress
-| ID | Task | Assignee | Story |
-|----|------|----------|-------|
-| T2.1 | Implement User model (CRUD) | Dev | US1, US4 |
-| T2.2 | Implement Student model (CRUD) | Dev | US1, US4 |
-
-#### Done
-| ID | Task | Assignee | Story |
-|----|------|----------|-------|
-| T1.4 | Create base Controller class | Dev | BF1 |
-| T1.5 | Create base Model class | Dev | BF1 |
-| T1.6 | Configure database connection | Dev | US1-5 |
+| Done | Task Description | Priority | Est. |
+| :---: | :--- | :--- | :--- |
+| [ ] | Design ERD diagram showing `users`, `students`, `lessons` + relationships (draw on paper or tool) | 🔴 High | 30 min |
+| [ ] | Write SQL to create `users` table (id, email, password, role [manager/surfer], created_at) | 🔴 High | 15 min |
+| [ ] | Write SQL to create `students` table (id, user_id FK, name, country, level [Beginner/Intermediate/Advanced], payment_status, created_at) | 🔴 High | 20 min |
+| [ ] | Write SQL to create `lessons` table (id, title, coach_name, session_date, session_time, created_at) | 🔴 High | 15 min |
+| [ ] | Write SQL to create `lesson_registrations` linking table (id, student_id FK, lesson_id FK, registered_at) | 🔴 High | 15 min |
+| [ ] | Add all Foreign Key constraints with ON DELETE CASCADE where appropriate | 🔴 High | 10 min |
+| [ ] | Write seed data: 2 users (1 manager, 1 surfer), 5 students, 3 lessons, 6 registrations | 🟡 Medium | 25 min |
+| [ ] | Export full SQL script as `database/taghazout_surf_expo.sql` | 🔴 High | 10 min |
+| [ ] | **Commit:** `"feat(db): complete schema with users, students, lessons tables and seeds"` | 🔴 High | 5 min |
 
 ---
 
-## Sprint 3: Manager Dashboard (Day 3)
+## 🟣 EPIC 3 — OOP Foundation & Models
 
-### Tasks
-
-#### To Do
-| ID | Task | Assignee | Story |
-|----|------|----------|-------|
-| T3.1 | Create AdminController | Dev | US1 |
-| T3.2 | Build manager dashboard view | Dev | US1 |
-| T3.3 | List all students with levels | Dev | US1 |
-| T3.4 | List all planned lessons | Dev | US1 |
-| T3.5 | Create lesson form | Dev | US2 |
-| T3.6 | Implement lesson creation | Dev | US2 |
-| T3.7 | Register students to lessons | Dev | US2 |
-| T3.8 | Update student level form | Dev | US3 |
-| T3.9 | Implement level modification | Dev | US3 |
-
-#### Done
-| ID | Task | Assignee | Story |
-|----|------|----------|-------|
-| T2.1 | Implement User model (CRUD) | Dev | US1, US4 |
-| T2.2 | Implement Student model (CRUD) | Dev | US1, US4 |
-| T2.3 | Implement Lesson model (CRUD) | Dev | US2 |
-| T2.4 | Create AuthController | Dev | US1 |
-| T2.5 | Implement login functionality | Dev | US1 |
-| T2.6 | Add password hashing (BCRYPT) | Dev | US1 |
+| Done | Task Description | Priority | Est. |
+| :---: | :--- | :--- | :--- |
+| [ ] | Create `config/Database.php` class with private PDO connection and public `getConnection()` method | 🔴 High | 25 min |
+| [ ] | Implement try/catch error handling in Database class with meaningful messages | 🔴 High | 10 min |
+| [ ] | Create `models/User.php` class with private properties (id, email, password, role) | 🔴 High | 20 min |
+| [ ] | Add public getters/setters in User class with proper encapsulation | 🔴 High | 15 min |
+| [ ] | Create `models/Student.php` class with private properties (id, userId, name, country, level, paymentStatus) | 🔴 High | 20 min |
+| [ ] | Add public getters/setters and CRUD methods (create, read, update, delete) in Student class | 🔴 High | 30 min |
+| [ ] | Create `models/Lesson.php` class with private properties (id, title, coach, date, time) | 🔴 High | 20 min |
+| [ ] | Add public getters/setters and CRUD methods in Lesson class | 🔴 High | 25 min |
+| [ ] | Create `models/Registration.php` class for lesson-student linking with methods | 🟡 Medium | 20 min |
+| [ ] | Test PDO connection with simple query in isolated test file | 🔴 High | 10 min |
+| [ ] | **Commit:** `"feat(models): OOP classes with encapsulation - User, Student, Lesson, Registration"` | 🔴 High | 5 min |
 
 ---
 
-## Sprint 4: Student Portal (Day 4)
+## 🟣 EPIC 4 — Authentication System (US1)
 
-### Tasks
-
-#### To Do
-| ID | Task | Assignee | Story |
-|----|------|----------|-------|
-| T4.1 | Create StudentController | Dev | US4 |
-| T4.2 | Build registration form | Dev | US4 |
-| T4.3 | Implement profile creation | Dev | US4 |
-| T4.4 | Create my-agenda view | Dev | US5 |
-| T4.5 | List student's lessons | Dev | US5 |
-| T4.6 | Display payment status | Dev | US5 |
-| T4.7 | Implement enrollment logic | Dev | US2, US5 |
-
-#### Done
-| ID | Task | Assignee | Story |
-|----|------|----------|-------|
-| T3.1 | Create AdminController | Dev | US1 |
-| T3.2 | Build manager dashboard view | Dev | US1 |
-| T3.3 | List all students with levels | Dev | US1 |
-| T3.4 | List all planned lessons | Dev | US1 |
-| T3.5 | Create lesson form | Dev | US2 |
-| T3.6 | Implement lesson creation | Dev | US2 |
-| T3.7 | Register students to lessons | Dev | US2 |
-| T3.8 | Update student level form | Dev | US3 |
-| T3.9 | Implement level modification | Dev | US3 |
+| Done | Task Description | Priority | Est. |
+| :---: | :--- | :--- | :--- |
+| [ ] | Create `controllers/AuthController.php` with login/logout methods | 🔴 High | 25 min |
+| [ ] | Create `views/auth/login.php` with email/password form (clean HTML, no SQL!) | 🔴 High | 20 min |
+| [ ] | Implement password verification using `password_verify()` against hashed DB password | 🔴 High | 20 min |
+| [ ] | Implement PHP Sessions: start session, store user data (id, role) on successful login | 🔴 High | 15 min |
+| [ ] | Create role-based redirection (Manager → dashboard, Surfer → calendar) | 🔴 High | 15 min |
+| [ ] | Create `middleware/AuthMiddleware.php` to protect routes based on role | 🟡 Medium | 20 min |
+| [ ] | Create `views/partials/header.php` with navigation (conditional based on role) | 🟡 Medium | 15 min |
+| [ ] | Create `views/partials/footer.php` with copyright info | 🟢 Low | 10 min |
+| [ ] | Implement logout functionality (destroy session, redirect to login) | 🟡 Medium | 10 min |
+| [ ] | Add form validation: required fields, email format, XSS prevention (`htmlspecialchars`) | 🔴 High | 15 min |
+| [ ] | **Commit:** `"feat(auth): secure login system with sessions and role-based access"` | 🔴 High | 5 min |
 
 ---
 
-## Sprint 5: Polish & Release (Day 5)
+## 🟣 EPIC 5 — Manager Dashboard & Session Management (US2, US3)
 
-### Tasks
-
-#### To Do
-| ID | Task | Assignee | Story |
-|----|------|----------|-------|
-| T5.1 | Implement MVC router | Dev | BF1 |
-| T5.2 | Add occupancy statistics | Dev | BF2 |
-| T5.3 | Form validation enhancement | Dev | US1-5 |
-| T5.4 | Error handling & edge cases | Dev | US1-5 |
-| T5.5 | Code review preparation | Dev | All |
-| T5.6 | Final testing & bug fixes | Dev | All |
-| T5.7 | Update README documentation | Dev | Doc |
-| T5.8 | Create taskboard documentation | Dev | Doc |
-
-#### In Progress
-| ID | Task | Assignee | Story |
-|----|------|----------|-------|
-| T5.1 | Implement MVC router | Dev | BF1 |
-
-#### Done
-| ID | Task | Assignee | Story |
-|----|------|----------|-------|
-| T4.1 | Create StudentController | Dev | US4 |
-| T4.2 | Build registration form | Dev | US4 |
-| T4.3 | Implement profile creation | Dev | US4 |
-| T4.4 | Create my-agenda view | Dev | US5 |
-| T4.5 | List student's lessons | Dev | US5 |
-| T4.6 | Display payment status | Dev | US5 |
-| T4.7 | Implement enrollment logic | Dev | US2, US5 |
+| Done | Task Description | Priority | Est. |
+| :---: | :--- | :--- | :--- |
+| [ ] | Create `controllers/ManagerController.php` with dashboard, createLesson, updateStudent methods | 🔴 High | 30 min |
+| [ ] | Create `views/manager/dashboard.php` displaying all students in a table (no SQL in view!) | 🔴 High | 25 min |
+| [ ] | Display all planned lessons/courses on dashboard with student count per session | 🔴 High | 20 min |
+| [ ] | Create `views/manager/create-lesson.php` form (Title, Coach, Date, Time) | 🔴 High | 20 min |
+| [ ] | Implement lesson creation in controller using Lesson model | 🔴 High | 20 min |
+| [ ] | Create `views/manager/assign-students.php` to register students to a lesson by level filter | 🔴 High | 30 min |
+| [ ] | Implement level filter dropdown (Beginner/Intermediate/Advanced) on assignment page | 🟡 Medium | 15 min |
+| [ ] | Create `views/manager/edit-student.php` form to modify student level | 🔴 High | 20 min |
+| [ ] | Implement student level update in controller (US3) | 🔴 High | 15 min |
+| [ ] | Add payment status toggle (Paid/Pending) for each student on dashboard | 🟡 Medium | 15 min |
+| [ ] | Add visual indicators: color badges for levels (Green/Yellow/Red) | 🟢 Low | 15 min |
+| [ ] | **Commit:** `"feat(manager): dashboard with full student/lesson management - US2, US3"` | 🔴 High | 5 min |
 
 ---
 
-## Jira Board View
+## 🟣 EPIC 6 — Surfer Registration & Profile (US4)
 
-### Backlog
-
-```
-📋 BACKLOG
-├── [US1] Manager login & dashboard
-├── [US2] Create surf sessions & register students
-├── [US3] Modify student levels
-├── [US4] Student self-registration
-├── [US5] Student calendar & payment status
-├── [BF1] MVC Router
-└── [BF2] Average occupancy stats
-```
-
-### Sprint 1 Board
-
-| To Do | In Progress | Done |
-|-------|-------------|------|
-| ⬜ T1.1 Schema | | ✅ T1.1 Schema |
-| ⬜ T1.2 Seed | | ✅ T1.2 Seed |
-| ⬜ T1.3 Structure | | ✅ T1.3 Structure |
-| ⬜ T1.4 Controller | | |
-| ⬜ T1.5 Model | | |
-| ⬜ T1.6 DB Config | | |
-
-### Sprint 2 Board
-
-| To Do | In Progress | Done |
-|-------|-------------|------|
-| ⬜ T2.1 User Model | 🔄 T2.1 User Model | ✅ T1.4 Controller |
-| ⬜ T2.2 Student Model | 🔄 T2.2 Student Model | ✅ T1.5 Model |
-| ⬜ T2.3 Lesson Model | | ✅ T1.6 DB Config |
-| ⬜ T2.4 AuthController | | |
-| ⬜ T2.5 Login | | |
-| ⬜ T2.6 Password Hash | | |
-
-### Sprint 3 Board
-
-| To Do | In Progress | Done |
-|-------|-------------|------|
-| ⬜ T3.1 AdminController | | ✅ T2.1 User Model |
-| ⬜ T3.2 Dashboard View | | ✅ T2.2 Student Model |
-| ⬜ T3.3 List Students | | ✅ T2.3 Lesson Model |
-| ⬜ T3.4 List Lessons | | ✅ T2.4 AuthController |
-| ⬜ T3.5 Create Form | | ✅ T2.5 Login |
-| ⬜ T3.6 Create Lesson | | ✅ T2.6 Password Hash |
-| ⬜ T3.7 Register Student | | |
-| ⬜ T3.8 Level Form | | |
-| ⬜ T3.9 Modify Level | | |
-
-### Sprint 4 Board
-
-| To Do | In Progress | Done |
-|-------|-------------|------|
-| ⬜ T4.1 StudentController | | ✅ T3.1 AdminController |
-| ⬜ T4.2 Registration Form | | ✅ T3.2 Dashboard View |
-| ⬜ T4.3 Profile Creation | | ✅ T3.3 List Students |
-| ⬜ T4.4 My Agenda View | | ✅ T3.4 List Lessons |
-| ⬜ T4.5 List Lessons | | ✅ T3.5 Create Form |
-| ⬜ T4.6 Payment Status | | ✅ T3.6 Create Lesson |
-| ⬜ T4.7 Enrollment | | ✅ T3.7 Register Student |
-| | | ✅ T3.8 Level Form |
-| | | ✅ T3.9 Modify Level |
-
-### Sprint 5 Board
-
-| To Do | In Progress | Done |
-|-------|-------------|------|
-| ⬜ T5.2 Stats | 🔄 T5.1 Router | ✅ T4.1 StudentController |
-| ⬜ T5.3 Validation | | ✅ T4.2 Registration Form |
-| ⬜ T5.4 Error Handling | | ✅ T4.3 Profile Creation |
-| ⬜ T5.5 Code Review | | ✅ T4.4 My Agenda View |
-| ⬜ T5.6 Testing | | ✅ T4.5 List Lessons |
-| ⬜ T5.7 README | | ✅ T4.6 Payment Status |
-| ⬜ T5.8 Taskboard | | ✅ T4.7 Enrollment |
+| Done | Task Description | Priority | Est. |
+| :---: | :--- | :--- | :--- |
+| [ ] | Create `controllers/SurferController.php` with register, viewProfile methods | 🔴 High | 20 min |
+| [ ] | Create `views/auth/register.php` form (Name, Email, Password, Country, Self-Assessed Level) | 🔴 High | 25 min |
+| [ ] | Implement form validation: required fields, unique email check, password strength | 🔴 High | 20 min |
+| [ ] | Implement password hashing using `password_hash()` with `PASSWORD_BCRYPT` | 🔴 High | 10 min |
+| [ ] | Create new User record with role='surfer' via User model | 🔴 High | 15 min |
+| [ ] | Create linked Student record with profile data via Student model | 🔴 High | 15 min |
+| [ ] | Display success message and redirect to login after registration | 🟡 Medium | 10 min |
+| [ ] | Create `views/surfer/profile.php` to display surfer's own information | 🟡 Medium | 15 min |
+| [ ] | Implement profile edit functionality (Name, Country only — level managed by Manager) | 🟢 Low | 20 min |
+| [ ] | **Commit:** `"feat(surfer): self-registration system with profile creation - US4"` | 🔴 High | 5 min |
 
 ---
 
-## Burndown Chart
+## 🟣 EPIC 7 — Surfer Calendar & Payment Status (US5)
 
-| Day | Tasks Remaining | Ideal |
-|-----|-----------------|-------|
-| 1 | 12 | 34 |
-| 2 | 18 | 27 |
-| 3 | 9 | 20 |
-| 4 | 7 | 13 |
-| 5 | 0 | 6 |
-
----
-
-## Definition of Done
-
-- [ ] Code compiles without errors
-- [ ] All unit tests pass
-- [ ] Code review completed
-- [ ] Documentation updated
-- [ ] All user stories demonstrated
-- [ ] No SQL queries in view files
-- [ ] Proper encapsulation verified
+| Done | Task Description | Priority | Est. |
+| :---: | :--- | :--- | :--- |
+| [ ] | Add method in SurferController to fetch only current user's lessons | 🔴 High | 20 min |
+| [ ] | Create `views/surfer/calendar.php` displaying list of upcoming registered lessons | 🔴 High | 25 min |
+| [ ] | Display lesson details: Title, Coach, Date, Time in card/list format | 🔴 High | 15 min |
+| [ ] | Implement payment status indicator: "Paid" (green badge) or "Pending" (red badge) | 🔴 High | 15 min |
+| [ ] | Filter lessons to show only future dates (`WHERE session_date >= CURDATE()`) | 🟡 Medium | 15 min |
+| [ ] | Add "No upcoming lessons" message if calendar is empty | 🟢 Low | 10 min |
+| [ ] | Ensure surfers can ONLY see their own data (session-based filtering) | 🔴 High | 15 min |
+| [ ] | **Commit:** `"feat(surfer): personal calendar with payment status display - US5"` | 🔴 High | 5 min |
 
 ---
 
-## Daily Standups
+## 🟣 EPIC 8 — Bonus Features
 
-### Day 1 - Monday 03/30/2026
-**Status:** Completed  
-**Blockers:** None  
-**Next:** Implement base classes
-
-### Day 2 - Tuesday 03/31/2026
-**Status:** Completed  
-**Blockers:** None  
-**Next:** Manager dashboard
-
-### Day 3 - Wednesday 04/01/2026
-**Status:** Completed  
-**Blockers:** None  
-**Next:** Student portal
-
-### Day 4 - Thursday 04/02/2026
-**Status:** Completed  
-**Blockers:** None  
-**Next:** Final polish
-
-### Day 5 - Friday 04/03/2026
-**Status:** In Progress  
-**Blockers:** None  
-**Next:** Demo & code review
+| Done | Task Description | Priority | Est. |
+| :---: | :--- | :--- | :--- |
+| [ ] | **BONUS: MVC Router** — Create `core/Router.php` class to handle URL routing | 🟡 Medium | 40 min |
+| [ ] | Define routes array mapping URLs to Controller/Action pairs | 🟡 Medium | 20 min |
+| [ ] | Implement `public/index.php` as single entry point parsing `REQUEST_URI` | 🟡 Medium | 25 min |
+| [ ] | Add `.htaccess` for clean URLs (RewriteEngine) | 🟡 Medium | 15 min |
+| [ ] | **BONUS: Stats Dashboard** — Calculate average students per session | 🟡 Medium | 25 min |
+| [ ] | Display stat card on manager dashboard: "Average of X students per session" | 🟡 Medium | 15 min |
+| [ ] | Add total counts: Total Students, Total Lessons, Pending Payments | 🟢 Low | 20 min |
+| [ ] | Add visual chart (simple CSS bar or basic JS chart) for occupancy | 🟢 Low | 30 min |
+| [ ] | **Commit:** `"feat(bonus): MVC router and dashboard statistics"` | 🟡 Medium | 5 min |
 
 ---
 
-## Notes
+## 🟣 EPIC 9 — Testing Phase
 
-- Individual project - no team dependencies
-- Manual testing via browser
-- Use seed data for verification
-- Follow PixelCraft Agency guidelines (no AI for business logic)
+### 🔵 User Story Validation Tests
+
+| Done | Test Case | User Story | Expected Result | Actual Result | Status |
+| :---: | :--- | :---: | :--- | :--- | :---: |
+| [ ] | Manager logs in with valid credentials | US1 | Redirect to dashboard with all students/lessons visible | | ⏳ |
+| [ ] | Manager logs in with invalid credentials | US1 | Error message displayed, no access granted | | ⏳ |
+| [ ] | Manager views dashboard with all students listed | US1 | Complete student list with name, level, payment status | | ⏳ |
+| [ ] | Manager views all planned courses on dashboard | US1 | All lessons with title, coach, date, time displayed | | ⏳ |
+| [ ] | Manager creates new surf session with all fields | US2 | Lesson saved to DB, appears on dashboard | | ⏳ |
+| [ ] | Manager assigns students to lesson by level filter | US2 | Selected students linked to lesson in registration table | | ⏳ |
+| [ ] | Manager modifies student level (Beginner → Intermediate) | US3 | Level updated in DB, reflected on dashboard | | ⏳ |
+| [ ] | Manager modifies student level (Intermediate → Advanced) | US3 | Level updated correctly | | ⏳ |
+| [ ] | New surfer registers with complete profile | US4 | User + Student records created, redirect to login | | ⏳ |
+| [ ] | Surfer registers with existing email | US4 | Error: "Email already exists" | | ⏳ |
+| [ ] | Surfer logs in and views personal calendar | US5 | Only their registered lessons displayed | | ⏳ |
+| [ ] | Surfer sees correct payment status (Paid/Pending) | US5 | Accurate badge displayed per their record | | ⏳ |
 
 ---
 
-*Last Updated: April 2, 2026*
+### 🔵 Security & Validation Tests
+
+| Done | Test Case | Category | Expected Result | Actual Result | Status |
+| :---: | :--- | :--- | :--- | :--- | :---: |
+| [ ] | SQL Injection attempt in login form | Security | Query fails safely, no data exposed | | ⏳ |
+| [ ] | SQL Injection attempt in registration form | Security | Prepared statement prevents injection | | ⏳ |
+| [ ] | XSS attack via student name field | Security | Script tags escaped/neutralized | | ⏳ |
+| [ ] | Direct URL access to manager dashboard without login | Security | Redirect to login page | | ⏳ |
+| [ ] | Surfer tries to access manager routes | Security | Access denied, redirect to surfer area | | ⏳ |
+| [ ] | Empty required fields on registration | Validation | Error message for each empty field | | ⏳ |
+| [ ] | Invalid email format on registration | Validation | "Invalid email format" error | | ⏳ |
+| [ ] | Password hashing verification | Security | Stored password is hashed (not plain text) | | ⏳ |
+
+---
+
+### 🔵 Architecture & Code Quality Tests
+
+| Done | Test Case | Category | Expected Result | Actual Result | Status |
+| :---: | :--- | :--- | :--- | :--- | :---: |
+| [ ] | Verify NO SQL queries in any View files | MVC | Zero PDO/SQL in `/views` folder | | ⏳ |
+| [ ] | Verify all Model properties are private | Encapsulation | All properties declared as `private` | | ⏳ |
+| [ ] | Verify Models have public getters/setters | Encapsulation | Public methods for data access | | ⏳ |
+| [ ] | Verify Controllers don't contain HTML | MVC | Controllers only process logic, return to views | | ⏳ |
+| [ ] | Test Database class connection method | OOP | Returns valid PDO instance | | ⏳ |
+| [ ] | Verify proper file structure (MVC folders) | Architecture | `/models`, `/views`, `/controllers` properly separated | | ⏳ |
+
+---
+
+### 🔵 Bug Tracking Log
+
+| Bug ID | Description | Severity | Steps to Reproduce | Status | Fix Applied |
+| :---: | :--- | :---: | :--- | :---: | :--- |
+| BUG-001 | | 🔴 High / 🟡 Med / 🟢 Low | | ⏳ | |
+| BUG-002 | | | | ⏳ | |
+| BUG-003 | | | | ⏳ | |
+| BUG-004 | | | | ⏳ | |
+| BUG-005 | | | | ⏳ | |
+
+---
+
+### 🔵 Edge Cases & Boundary Tests
+
+| Done | Test Case | Expected Behavior | Status |
+| :---: | :--- | :--- | :---: |
+| [ ] | Lesson with 0 students registered | Display "No students registered" message | ⏳ |
+| [ ] | Student with no lessons assigned | Calendar shows "No upcoming lessons" | ⏳ |
+| [ ] | Create lesson with past date | Should be rejected or show warning | ⏳ |
+| [ ] | Very long student name (100+ characters) | Truncated or 
