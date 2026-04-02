@@ -58,5 +58,4 @@ Thumbs.db
 !/storage/framework/cache/data/.gitignore
 /bootstrap/cache/*
 !/bootstrap/cache/.gitignore
-
-
+.idea.txt

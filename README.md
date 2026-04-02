@@ -1,2 +1,233 @@
-# SurfSchool-manager
-a comprehensive application designed to streamline the management of student surfing sessions. This project aims to provide surf schools with an efficient way to organize, track, and manage their students' schedules, sessions, and progress.
+# 🏄 SurfSchool Manager — Surf Session Management System
+
+> A comprehensive web application for managing surf school operations. Built with PHP using MVC architecture and OOP principles to streamline student registrations, lesson scheduling, and payment tracking for Taghazout Surf Expo.
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer       | Technology                              |
+|-------------|-----------------------------------------|
+| Backend     | PHP 8+                                  |
+| Database    | MySQL / MariaDB                         |
+| DB Access   | PDO + Prepared Statements               |
+| Auth        | PHP Sessions + `password_hash()`        |
+| Architecture| MVC (Model-View-Controller)            |
+| Programming | OOP with Encapsulation                  |
+| Frontend    | HTML5 / CSS3                            |
+
+---
+
+## ✨ Features
+
+### 👑 Manager (Administrator Access)
+- 🔐 **Secure Login** — Register/Login with hashed passwords
+- 📊 **Dashboard** — View all students and planned courses at a glance
+- 📅 **Session Management** — Create surf sessions (Title, Coach, Date/Time)
+- 🎓 **Student Registration** — Register students to lessons by level
+- 📈 **Level Management** — Modify student levels (Beginner, Intermediate, Advanced)
+- 📉 **Occupancy Stats** — Display average course occupancy rate
+
+### 🏄 Surfer (Customer Access)
+- ✍️ **Self-Registration** — Create profile (Name, Country, Self-Assessed Level)
+- 📅 **My Calendar** — View upcoming classes
+- 💳 **Payment Status** — Check payment status (Paid/Pending)
+
+---
+
+## 🗄️ Database Schema
+
+```markdown
+users
+├── id (PK)
+├── email
+├── password_hash
+├── role (ENUM: admin/student)
+└── created_at
+
+students
+├── id (PK)
+├── user_id (FK → users.id)
+├── full_name
+├── country
+├── level (ENUM: Beginner/Intermediate/Advanced)
+└── phone
+
+lessons
+├── id (PK)
+├── title
+├── coach_name
+├── lesson_date
+├── max_capacity
+└── created_at
+
+enrollments
+├── id (PK)
+├── student_id (FK → students.id)
+├── lesson_id (FK → lessons.id)
+└── payment_status (ENUM: Paid/Pending)
+```
+
+### Tables & Their Columns
+
+- **users** — Authentication table. Stores email and password for both Admins and Students. Role is an ENUM so no separate admin table needed.
+
+- **students** — Profile table with extra details like Name, Country, and Skill Level. Links to users via `user_id` foreign key.
+
+- **lessons** — Schedule table for surf sessions. Created by Admins with title, coach, date/time, and capacity.
+
+- **enrollments** — Many-to-Many join table linking students to lessons. Includes payment status for tracking.
+
+#### Relationships (Crows Foot Notation)
+
+- users → students : one user can have one student profile (||--||)
+- students → enrollments : one student can enroll in many lessons (||--o{)
+- lessons → enrollments : one lesson can have many students (||--o{)
+
+<font color="dark green">This is exactly what your INNER JOIN query exploits — it walks those FK links to replace raw IDs with human-readable names!</font>
+
+---
+
+## 📊 Schema Visualisation
+
+![schema visualisation](/public/img/tables.png)
+
+---
+
+## 🚀 Installation
+
+### Prerequisites
+
+- PHP 8+ with PDO extension enabled
+- MySQL 5.7+ or MariaDB
+- A local server (XAMPP, WAMP, Laragon, or similar)
+
+### Steps
+
+1. **Clone the repository**
+
+```bash
+git clone https://github.com/your-username/surf-school-manager.git
+cd surf-school-manager
+```
+
+2. **Import the database**
+   - Open phpMyAdmin (or your MySQL client)
+   - Create a new database: `surf_school`
+   - Import: `database/database.sql`
+   - Import seed data: `database/seed.sql`
+
+3. **Configure the connection**
+   - Open `config/db.php`
+   - Update with your local credentials:
+
+```php
+$host = 'localhost';
+$db   = 'surf_school';
+$user = 'root';
+$pass = '';
+```
+
+4. **Run the project**
+   - Place the folder in your server's `htdocs` or `www` directory
+   - Start PHP server:
+   ```bash
+   php -S localhost:8000 -t public
+   ```
+   - Visit: `http://localhost:8000`
+
+---
+
+## 📁 Project Structure
+
+```markdown
+surf-school-manager/
+├── app/
+│   ├── controllers/
+│   │   ├── AdminController.php
+│   │   ├── AuthController.php
+│   │   ├── LessonController.php
+│   │   └── StudentController.php
+│   ├── core/
+│   │   ├── App.php          # Router & Request handling
+│   │   ├── Controller.php   # Base controller class
+│   │   └── Model.php        # Base model class (PDO)
+│   ├── models/
+│   │   ├── Lesson.php
+│   │   ├── Student.php
+│   │   └── User.php
+│   └── views/
+│       ├── admin/
+│       │   ├── dashboard.php
+│       │   └── manage-lessons.php
+│       ├── auth/
+│       │   └── login.php
+│       ├── shared/
+│       │   ├── footer.php
+│       │   └── header.php
+│       └── student/
+│           ├── my-agenda.php
+│           └── register.php
+├── config/
+│   └── db.php               # Database connection
+├── database/
+│   ├── database.sql         # Schema creation
+│   └── seed.sql             # Test data
+├── public/
+│   ├── index.php            # Single entry point
+│   ├── style/
+│   │   └── main.css
+│   └── img/
+│       └── logo.png
+├── tests/
+│   └── unit_tests.php
+├── .gitignore
+├── LICENSE
+└── README.md
+```
+
+---
+
+## 🔒 Security Highlights
+
+- 🔐 **Password Hashing** — Uses `password_hash()` / `password_verify()`
+- 🛡️ **Zero SQL Injection** — All queries use PDO Prepared Statements
+- ✅ **Server-side Validation** — Strict form validation on all inputs
+- 🔒 **Session-based Auth** — Role-based access control (admin/student)
+- 🚫 **No SQL in Views** — All queries in Models only
+
+---
+
+## 📊 User Stories
+
+| ID  | Description                                                                   | Actor    |
+|-----|-------------------------------------------------------------------------------|----------|
+| US1 | Log in to access dashboard displaying all students and planned courses      | Manager  |
+| US2 | Create surf session and register students according to their level          | Manager  |
+| US3 | Modify student level (Beginner, Intermediate, Advanced)                     | Manager  |
+| US4 | Create profile (Name, Country, Self-Assessed Level)                         | Surfer   |
+| US5 | View upcoming classes and check payment status                               | Surfer   |
+
+### Bonus Features (Advanced)
+
+- [ ] MVC Router — Single entry point (index.php) directing requests to controllers
+- [ ] Stats Display — Average course occupancy rate on dashboard
+
+---
+
+## 🖼️ Screenshots
+
+![login](/public/img/login.png)
+![dashboard](/public/img/dashboard.png)
+![manage-lessons](/public/img/manage-lessons.png)
+![student-agenda](/public/img/student-agenda.png)
+
+---
+
+## 👤 Author
+
+ — Built as part of a Full-Stack PHP/MySQL project at PixelCraft Agency.
+
+**Client:** Taghazout Surf Expo  
+**Agency:** PixelCraft Agency  
+**Date** April 3, 2026

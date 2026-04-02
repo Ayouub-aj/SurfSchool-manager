@@ -1,0 +1,57 @@
+Project context
+You work for PixelCraft Agency, an agency that transforms local businesses through digital. Your client, Taghazout Surf Expo, is a victim of its success: paper registrations and Excel files no longer make it possible to effectively track the hundreds of students who come to surf every week.
+
+The problem : The instructors do not know the level of the students before the session, and the managers have difficulty monitoring who paid for their lessons.
+
+As a Backend Developer, your role is:
+
+Implement architecture MVC (Model-View-Controller) : Physically separate data logic, business logic and display for maintainable code.
+Adopt it OOP (Object Oriented Programming) : Create classes (eg: Student, Lesson, Database) with strict use of encapsulation (private properties and public methods).
+Manage Advanced Relationships: Design a standardized database (3 tables: users, students, lessons) with a linking table or foreign keys for registrations.
+Guarantee Security & Integrity: Use PDO (Prepared Statements), password hashing and strict form validation.
+User Stories (Business Needs)
+
+HAS. The Manager (Administrator Access)
+US1 (Global Management): As Manager, I want to log in to access the dashboard displaying all students and all planned courses.
+US2 (Scheduling Management): As Manager, I want to create a surf session (Title, Coach, Date/Time) and register students according to their level.
+US3 (Educational Monitoring): As a Manager, I want to be able to modify the level of a student (Beginner, Intermediate, Advanced) to ensure their follow-up after each lesson.
+B. The Surfer (Customer Access)
+US4 (Self-Registration): As a new surfer, I want to create my profile (Name, Country, Self-Assessed Level) to be listed in the school system.
+US5 (My Calendar): As a connected surfer, I only want to view the list of my upcoming classes and check if my payment status is up to date ("Paid" or "Pending").
+++ Bonus
+
+MVC Router : Set up a single entry point (index.php) that directs requests to the correct controllers.
+
+Stats Software : Display the average course occupancy rate on the dashboard (eg: "Average of 5 students per session").
+
+------------------------------------------------------------------------------------------------
+
+⚠️ PixelCraft Agency Golden Rule: > The use of AI (ChatGPT, Claude, Copilot) is strictly prohibited for the generation of Business Logic and Project Structure.
+
+Forbidden : Ask the AI to generate an entire class, controller, or folder structure.
+Forbidden : Copy and paste logical code (loops, conditions, calculations) without being able to explain it line by line.
+Allowed : Use AI as documentation (eg: "What is the syntax for a try/catch in PHP 8.4?").
+Allowed : Generate test content (Seeding) or basic CSS/HTML for the design.
+Sanction: Any "magic" code not mastered during the code review will result in the invalidation of the corresponding User Story.
+
+Learning methods
+Fashion: Individual (5 days).
+Launch date: Monday 03/30/2026 – 09:45 AM.
+Deadline: Friday 04/03/2026 – 5:00 PM.
+Assessment methods
+Individual interview of 25 to 30 minutes consisting of:
+Demonstration (10 min): Complete user journey (Registration -> Course creation -> Customer diary consultation).
+Code Review (10 min): Analysis of folder structure and verification of encapsulation in classes.
+Scenario (10 min): "Live" modification (eg: "Add a 'Phone' field to the student and display it in the manager dashboard").
+Deliverable
+GitHub repository: Minimum 10 explicit commits reflecting evolution (e.g.: "Add MVC Structure", "Create Student Class", etc.).
+
+SQL file: Complete creation and seeding script (test data).
+
+README.md: Documentation including DB schema and project tree.
+Performance criteria
+Zero SQL in View: No PDO queries should appear in HTML files.
+
+Encapsulation: Correct use of visibilities (private/public) in classes.
+
+Cleanliness: Perfect indentation and logical separation of responsibilities (MVC).
