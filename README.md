@@ -14,7 +14,7 @@
 | Auth        | PHP Sessions + `password_hash()`        |
 | Architecture| MVC (Model-View-Controller)            |
 | Programming | OOP with Encapsulation                  |
-| Frontend    | HTML5 / CSS3                            |
+| Frontend    | HTML5 / CSS3 (Vanilla)                  |
 
 ---
 
@@ -41,7 +41,7 @@
 users
 ├── id (PK)
 ├── email
-├── password_hash
+├── password
 ├── role (ENUM: admin/student)
 └── created_at
 
@@ -61,11 +61,11 @@ lessons
 ├── max_capacity
 └── created_at
 
-enrollments
-├── id (PK)
+lesson_registrations
 ├── student_id (FK → students.id)
 ├── lesson_id (FK → lessons.id)
-└── payment_status (ENUM: Paid/Pending)
+├── payment_status (ENUM: Pending/Paid)
+└── registered_at
 ```
 
 ### Tables & Their Columns
@@ -76,21 +76,19 @@ enrollments
 
 - **lessons** — Schedule table for surf sessions. Created by Admins with title, coach, date/time, and capacity.
 
-- **enrollments** — Many-to-Many join table linking students to lessons. Includes payment status for tracking.
+- **lesson_registrations** — Many-to-Many join table linking students to lessons. Includes payment status for tracking.
 
 #### Relationships (Crows Foot Notation)
 
 - users → students : one user can have one student profile (||--||)
-- students → enrollments : one student can enroll in many lessons (||--o{)
-- lessons → enrollments : one lesson can have many students (||--o{)
-
-<font color="dark green">This is exactly what your INNER JOIN query exploits — it walks those FK links to replace raw IDs with human-readable names!</font>
+- students → lesson_registrations : one student can enroll in many lessons (||--o{)
+- lessons → lesson_registrations : one lesson can have many students (||--o{)
 
 ---
 
 ## 📊 Schema Visualisation
 
-![schema visualisation](/public/img/tables.png)
+![schema visualisation](./public/img/tables_diagram.png)
 
 ---
 
@@ -107,8 +105,8 @@ enrollments
 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/your-username/surf-school-manager.git
-cd surf-school-manager
+git clone https://github.com/Ayouub-aj/SurfSchool-manager.git
+cd SurfSchool-manager
 ```
 
 2. **Import the database**
@@ -141,7 +139,7 @@ $pass = '';
 ## 📁 Project Structure
 
 ```markdown
-surf-school-manager/
+SurfSchool-manager/
 ├── app/
 │   ├── controllers/
 │   │   ├── AdminController.php
@@ -149,9 +147,11 @@ surf-school-manager/
 │   │   ├── LessonController.php
 │   │   └── StudentController.php
 │   ├── core/
-│   │   ├── App.php          # Router & Request handling
-│   │   ├── Controller.php   # Base controller class
-│   │   └── Model.php        # Base model class (PDO)
+│   │   ├── App.php              # Router & Request handling
+│   │   ├── Controller.php       # Base controller class
+│   │   └── Model.php            # Base model class (PDO)
+│   ├── middleware/
+│   │   └── AuthMiddleware.php   # Authentication & Role checks
 │   ├── models/
 │   │   ├── Lesson.php
 │   │   ├── Student.php
@@ -161,29 +161,32 @@ surf-school-manager/
 │       │   ├── dashboard.php
 │       │   └── manage-lessons.php
 │       ├── auth/
-│       │   └── login.php
+│       │   ├── login.php
+│       │   ├── logout.php
+│       │   └── registration.php
 │       ├── shared/
 │       │   ├── footer.php
 │       │   └── header.php
 │       └── student/
-│           ├── my-agenda.php
-│           └── register.php
+│           └── my-agenda.php
 ├── config/
-│   └── db.php               # Database connection
+│   └── db.php                   # Database connection
 ├── database/
-│   ├── database.sql         # Schema creation
-│   └── seed.sql             # Test data
+│   ├── database.sql             # Schema formation
+│   └── seed.sql                 # Demo data
 ├── public/
-│   ├── index.php            # Single entry point
+│   ├── index.php                # Single entry point
 │   ├── style/
 │   │   └── main.css
 │   └── img/
-│       └── logo.png
+│       └── tables_diagram.png   # Database ERD
 ├── tests/
 │   └── unit_tests.php
 ├── .gitignore
 ├── LICENSE
-└── README.md
+├── mvc_structure_creator.sh      # Setup script
+├── README.md
+└── taskboard.md                 # Project roadmap & progress
 ```
 
 ---
@@ -193,25 +196,20 @@ surf-school-manager/
 - 🔐 **Password Hashing** — Uses `password_hash()` / `password_verify()`
 - 🛡️ **Zero SQL Injection** — All queries use PDO Prepared Statements
 - ✅ **Server-side Validation** — Strict form validation on all inputs
-- 🔒 **Session-based Auth** — Role-based access control (admin/student)
-- 🚫 **No SQL in Views** — All queries in Models only
+- 🔒 **Session-based Auth** — Role-based access control via Middleware
+- 🚫 **No SQL in Views** — Clean separation of concerns (MVC)
 
 ---
 
 ## 📊 User Stories
 
-| ID  | Description                                                                   | Actor    |
-|-----|-------------------------------------------------------------------------------|----------|
-| US1 | Log in to access dashboard displaying all students and planned courses      | Manager  |
-| US2 | Create surf session and register students according to their level          | Manager  |
-| US3 | Modify student level (Beginner, Intermediate, Advanced)                     | Manager  |
-| US4 | Create profile (Name, Country, Self-Assessed Level)                         | Surfer   |
-| US5 | View upcoming classes and check payment status                               | Surfer   |
-
-### Bonus Features (Advanced)
-
-- [ ] MVC Router — Single entry point (index.php) directing requests to controllers
-- [ ] Stats Display — Average course occupancy rate on dashboard
+| ID  | Description                                                                   | Actor    | Status |
+|-----|-------------------------------------------------------------------------------|----------|--------|
+| US1 | Log in to access dashboard displaying all students and planned courses      | Manager  | ✅      |
+| US2 | Create surf session and register students according to their level          | Manager  | ✅      |
+| US3 | Modify student level (Beginner, Intermediate, Advanced)                     | Manager  | ✅      |
+| US4 | Create profile (Name, Country, Self-Assessed Level)                         | Surfer   | ✅      |
+| US5 | View upcoming classes and check payment status                               | Surfer   | ✅      |
 
 ---
 
