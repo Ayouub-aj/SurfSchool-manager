@@ -3,8 +3,8 @@
 -- 1. USERS TABLE: This is the "Identity" table for logins.
 -- It stores the email and password for both Admins and Students.
 CREATE TABLE IF NOT EXISTS `users` (
-    `id`            INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,       --Unique ID for every user. UNSIGNED allows more than 1000000000 users. not like signed integer
-    `email`         VARCHAR(150) NOT NULL UNIQUE,                  --Email: VARCHAR(150) allows long emails. UNIQUE = no two people can use the same email.
+    `id`            INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,       -- Unique ID for every user. UNSIGNED allows more than 1000000000 users. not like signed integer
+    `email`         VARCHAR(150) NOT NULL UNIQUE,                  -- Email: VARCHAR(150) allows long emails. UNIQUE = no two people can use the same email.
     `password`      VARCHAR(255) NOT NULL,                         -- Password: VARCHAR(255) is long enough to hold a secure "hashed" password (BCRYPT).
     `role`          ENUM('admin', 'student') DEFAULT 'student',    -- Role: ENUM restricts the choice to ONLY 'admin' or 'student'. DEFAULT 'student' means every new signup starts as a client.
     `created_at`    TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -40,19 +40,20 @@ CREATE TABLE IF NOT EXISTS `lessons` (
 ) ENGINE=InnoDB;
 
 
--- 4. ENROLLMENTS TABLE: This is the "Join Table" (Many-to-Many).
+-- 4. LESSON REGISTRATIONS TABLE: This is the "Join Table" (Many-to-Many).
 -- Since one student can take many lessons, and one lesson has many students.
 CREATE TABLE IF NOT EXISTS `lesson_registrations` (
     `student_id`        INT UNSIGNED NOT NULL,                      -- student_id: Links to a specific student profile.
     `lesson_id`         INT UNSIGNED NOT NULL,                      -- lesson_id: Links to a specific surf session.
     `payment_status`    ENUM('Pending', 'Paid') DEFAULT 'Pending',  -- Payment Status: (checking if the student has paid).
+    `registered_at`     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,         -- Tracks when the enrollment occurred.
 
     -- PRIMARY KEY (Composite): Prevents a student from signing up for the SAME lesson twice.
     PRIMARY KEY (`student_id`, `lesson_id`),
     
     -- Relational Integrity: Links this table to the students and lessons tables.
     CONSTRAINT 
-        fk_enroll_student FOREIGN KEY (`student_id`) REFERENCES `students`(`id`) ON DELETE CASCADE,
+        fk_reg_student FOREIGN KEY (`student_id`) REFERENCES `students`(`id`) ON DELETE CASCADE,
     CONSTRAINT 
-        fk_enroll_lesson FOREIGN KEY (`lesson_id`) REFERENCES `lessons`(`id`) ON DELETE CASCADE
+        fk_reg_lesson FOREIGN KEY (`lesson_id`) REFERENCES `lessons`(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB;
