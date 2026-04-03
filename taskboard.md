@@ -10,8 +10,8 @@
 
 | Day | Focus | Status |
 | :--- | :--- | :---: |
-| **Day 1 (Mar 30)** | Epic 1 + 2 — Project Setup, MVC Structure, DB Schema | [ ] |
-| **Day 2 (Mar 31)** | Epic 3 + 4 — OOP Classes, PDO Connection, Auth System (US1) | [ ] |
+| **Day 1 (Mar 30)** | Epic 1 + 2 — Project Setup, MVC Structure, DB Schema | ✅ |
+| **Day 2 (Mar 31)** | Epic 3 — OOP Classes, PDO Connection, Auth System (Base) | ✅ |
 | **Day 3 (Apr 01)** | Epic 5 + 6 — Admin Dashboard (US2, US3) + Surfer Registration (US4) | [ ] |
 | **Day 4 (Apr 02)** | Epic 7 + 8 — Student Calendar (US5) + Bonus Features (Router, Stats) | [ ] |
 | **Day 5 (Apr 03)** | Epic 9 + 10 — Testing Phase, Bug Fixes, Documentation, Final Push | [ ] |
@@ -39,15 +39,15 @@
 
 | Done | Task Description | Priority | Est. |
 | :---: | :--- | :--- | :--- |
-| [ ] | Design ERD diagram showing `users`, `students`, `lessons` + relationships (draw on paper or tool) | 🔴 High | 30 min |
-| [ ] | Write SQL to create `users` table (id, email, password, role [admin/student], created_at) | 🔴 High | 15 min |
-| [ ] | Write SQL to create `students` table (id, user_id FK, name, country, level [Beginner/Intermediate/Advanced], payment_status, created_at) | 🔴 High | 20 min |
-| [ ] | Write SQL to create `lessons` table (id, title, coach_name, session_date, session_time, created_at) | 🔴 High | 15 min |
-| [ ] | Write SQL to create `lesson_registrations` linking table (id, student_id FK, lesson_id FK, registered_at) | 🔴 High | 15 min |
-| [ ] | Add all Foreign Key constraints with ON DELETE CASCADE where appropriate | 🔴 High | 10 min |
-| [ ] | Write seed data: 2 users (1 admin, 1 student), 5 students, 3 lessons, 6 registrations | 🟡 Medium | 25 min |
-| [ ] | Export full SQL schema as `database/database.sql` and seeds as `database/seed.sql` | 🔴 High | 10 min |
-| [ ] | **Commit:** `"feat(db): complete schema with users, students, lessons tables and seeds"` | 🔴 High | 5 min |
+| ✅ | Design ERD diagram showing `users`, `students`, `lessons` + relationships (draw on paper or tool) | 🔴 High | 30 min |
+| ✅ | Write SQL to create `users` table (id, email, password, role [admin/student], created_at) | 🔴 High | 15 min |
+| ✅ | Write SQL to create `students` table (id, user_id FK, name, country, level [Beginner/Intermediate/Advanced], payment_status, created_at) | 🔴 High | 20 min |
+| ✅ | Write SQL to create `lessons` table (id, title, coach_name, session_date, session_time, created_at) | 🔴 High | 15 min |
+| ✅ | Write SQL to create `lesson_registrations` linking table (id, student_id FK, lesson_id FK, registered_at) | 🔴 High | 15 min |
+| ✅ | Add all Foreign Key constraints with ON DELETE CASCADE where appropriate | 🔴 High | 10 min |
+| ✅ | Write seed data: 2 users (1 admin, 1 student), 5 students, 3 lessons, 6 registrations | 🟡 Medium | 25 min |
+| ✅ | Export full SQL schema as `database/database.sql` and seeds as `database/seed.sql` | 🔴 High | 10 min |
+| ✅ | **Commit:** `"feat(db): complete schema with users, students, lessons tables and seeds"` | 🔴 High | 5 min |
 
 ---
 
@@ -55,19 +55,19 @@
 
 | Done | Task Description | Priority | Est. |
 | :---: | :--- | :--- | :--- |
-| [ ] | Create `config/db.php` with PDO connection constants/config | 🔴 High | 25 min |
-| [ ] | Create `app/core/Model.php` base class with PDO connection and `getConnection()` method | 🔴 High | 20 min |
-| [ ] | Create `app/core/Controller.php` base class with `loadView()` helper method | 🔴 High | 15 min |
-| [ ] | Create `app/core/App.php` router/dispatcher class to map URLs to controllers | 🔴 High | 30 min |
-| [ ] | Implement try/catch error handling in Model base class with meaningful messages | 🔴 High | 10 min |
-| [ ] | Create `app/models/User.php` class with private properties (id, email, password, role) | 🔴 High | 20 min |
-| [ ] | Add public getters/setters in User class with proper encapsulation | 🔴 High | 15 min |
-| [ ] | Create `app/models/Student.php` class with private properties (id, userId, name, country, level, paymentStatus) | 🔴 High | 20 min |
-| [ ] | Add public getters/setters and CRUD methods (create, read, update, delete) in Student class | 🔴 High | 30 min |
-| [ ] | Create `app/models/Lesson.php` class with private properties (id, title, coach, date, time) | 🔴 High | 20 min |
-| [ ] | Add public getters/setters and CRUD methods in Lesson class | 🔴 High | 25 min |
-| [ ] | Test PDO connection with simple query in `tests/unit_tests.php` | 🔴 High | 10 min |
-| [ ] | **Commit:** `"feat(models): OOP classes with encapsulation - User, Student, Lesson"` | 🔴 High | 5 min |
+| ✅ | Create `config/db.php` with PDO connection constants/config | 🔴 High | 25 min |
+| ✅ | Create `app/core/Model.php` base class with PDO connection and `getConnection()` method | 🔴 High | 20 min |
+| ✅ | Create `app/core/Controller.php` base class with `loadView()` helper method | 🔴 High | 15 min |
+| ✅ | Create `app/core/App.php` router/dispatcher class to map URLs to controllers | 🔴 High | 30 min |
+| ✅ | Implement try/catch error handling in Model base class with meaningful messages | 🔴 High | 10 min |
+| ✅ | Create `app/models/User.php` class with private properties (id, email, password, role) | 🔴 High | 20 min |
+| ✅ | Add public getters/setters in User class with proper encapsulation | 🔴 High | 15 min |
+| ✅ | Create `app/models/Student.php` class with private properties (id, userId, name, country, level, paymentStatus) | 🔴 High | 20 min |
+| ✅ | Add public getters/setters and CRUD methods (create, read, update, delete) in Student class | 🔴 High | 30 min |
+| ✅ | Create `app/models/Lesson.php` class with private properties (id, title, coach, date, time) | 🔴 High | 20 min |
+| ✅ | Add public getters/setters and CRUD methods in Lesson class | 🔴 High | 25 min |
+| ✅ | Test PDO connection with simple query in `tests/unit_tests.php` | 🔴 High | 10 min |
+| ✅ | **Commit:** `"feat(models): OOP classes with encapsulation - User, Student, Lesson"` | 🔴 High | 5 min |
 
 ---
 
@@ -75,18 +75,18 @@
 
 | Done | Task Description | Priority | Est. |
 | :---: | :--- | :--- | :--- |
-| [ ] | Create `app/controllers/AuthController.php` with `login()`, `logout()`, `register()` actions | 🔴 High | 25 min |
-| [ ] | Create `app/views/auth/login.php` with email/password form (clean HTML, no SQL!) | 🔴 High | 20 min |
-| [ ] | Create `app/views/auth/logout.php` to handle session destruction and redirect | 🟡 Medium | 10 min |
-| [ ] | Create `app/views/auth/registration.php` form (Name, Email, Password, Country, Level) | 🔴 High | 25 min |
-| [ ] | Implement password verification using `password_verify()` against hashed DB password | 🔴 High | 20 min |
-| [ ] | Implement PHP Sessions: start session, store user data (id, role) on successful login | 🔴 High | 15 min |
-| [ ] | Create role-based redirection (Admin → dashboard, Student → my-agenda) | 🔴 High | 15 min |
-| [ ] | Create `app/middleware/AuthMiddleware.php` to protect routes based on role | 🟡 Medium | 20 min |
-| [ ] | Create `app/views/shared/header.php` with navigation (conditional based on role) | 🟡 Medium | 15 min |
-| [ ] | Create `app/views/shared/footer.php` with copyright info | 🟢 Low | 10 min |
-| [ ] | Add form validation: required fields, email format, XSS prevention (`htmlspecialchars`) | 🔴 High | 15 min |
-| [ ] | **Commit:** `"feat(auth): secure login system with sessions and role-based access"` | 🔴 High | 5 min |
+| ✅ | Create `app/controllers/AuthController.php` with `login()`, `logout()`, `register()` actions | 🔴 High | 25 min |
+| ✅ | Create `app/views/auth/login.php` with email/password form (clean HTML, no SQL!) | 🔴 High | 20 min |
+| ✅ | Create `app/views/auth/logout.php` to handle session destruction and redirect | 🟡 Medium | 10 min |
+| ✅ | Create `app/views/auth/registration.php` form (Name, Email, Password, Country, Level) | 🔴 High | 25 min |
+| ✅ | Implement password verification using `password_verify()` against hashed DB password | 🔴 High | 20 min |
+| ✅ | Implement PHP Sessions: start session, store user data (id, role) on successful login | 🔴 High | 15 min |
+| ✅ | Create role-based redirection (Admin → dashboard, Student → my-agenda) | 🔴 High | 15 min |
+| ✅ | Create `app/middleware/AuthMiddleware.php` to protect routes based on role | 🟡 Medium | 20 min |
+| ✅ | Create `app/views/shared/header.php` with navigation (conditional based on role) | 🟡 Medium | 15 min |
+| ✅ | Create `app/views/shared/footer.php` with copyright info | 🟢 Low | 10 min |
+| ✅ | Add form validation: required fields, email format, XSS prevention (`htmlspecialchars`) | 🔴 High | 15 min |
+| ✅ | **Commit:** `"feat(auth): secure login system with sessions and role-based access"` | 🔴 High | 5 min |
 
 ---
 
